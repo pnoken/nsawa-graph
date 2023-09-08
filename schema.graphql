@@ -1,0 +1,71 @@
+type AddedOrganisation @entity(immutable: true) {
+  id: Bytes!
+  organnisationId: BigInt! # uint256
+  name: String! # string
+  description: String! # string
+  website: String! # string
+  logo: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BeneficiaryChanged @entity(immutable: true) {
+  id: Bytes!
+  newBeneficiary: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type DonationReceived @entity(immutable: true) {
+  id: Bytes!
+  donationId: BigInt! # uint256
+  organisationID: BigInt! # uint256
+  donor: Bytes! # address
+  amount: BigInt! # uint256
+  message: String! # string
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type EmergencyStopSet @entity(immutable: true) {
+  id: Bytes!
+  emergencyStop: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FundsWithdrawn @entity(immutable: true) {
+  id: Bytes!
+  beneficiary: Bytes! # address
+  amount: BigInt! # uint256
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NsawaTransfer @entity(immutable: true) {
+  id: Bytes!
+  donationId: BigInt! # uint256
+  donor: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type WithdrawalRequested @entity(immutable: true) {
+  id: Bytes!
+  transactionId: BigInt! # uint256
+  signer: Bytes! # address
+  amount: BigInt! # uint256
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

@@ -1,0 +1,42 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: mumbai
+    source:
+      address: "0x088b415eac99f62A67A7d1C151317c95bC14A5DA"
+      abi: Contract
+      startBlock: 39899452
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddedOrganisation
+        - BeneficiaryChanged
+        - DonationReceived
+        - EmergencyStopSet
+        - FundsWithdrawn
+        - NsawaTransfer
+        - WithdrawalRequested
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: AddedOrganisation(uint256,string,string,string,string)
+          handler: handleAddedOrganisation
+        - event: BeneficiaryChanged(indexed address)
+          handler: handleBeneficiaryChanged
+        - event: DonationReceived(indexed uint256,indexed uint256,indexed address,uint256,string,uint256)
+          handler: handleDonationReceived
+        - event: EmergencyStopSet(indexed bool)
+          handler: handleEmergencyStopSet
+        - event: FundsWithdrawn(indexed address,uint256,uint256)
+          handler: handleFundsWithdrawn
+        - event: NsawaTransfer(indexed uint256,indexed address,uint256)
+          handler: handleNsawaTransfer
+        - event: WithdrawalRequested(indexed uint256,indexed address,uint256,uint256)
+          handler: handleWithdrawalRequested
+      file: ./src/contract.ts
